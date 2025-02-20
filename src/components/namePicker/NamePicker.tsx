@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useUserData } from '../../hooks/useUserData';
 import styles from './style.module.css';
+import { UserData, UpdateType } from '../../types/commonTypes';
 
-const NamePicker = () => {
-    const { values, update } = useUserData();
+const NamePicker: React.FC<{values: UserData, update: UpdateType}> = ({values, update}) => {
     const [name, setName] = useState(values.name);
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);

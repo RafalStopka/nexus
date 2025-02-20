@@ -1,14 +1,10 @@
 import React, { createContext, useContext, useState } from "react";
+import { UpdateType, UserData } from "../types/commonTypes";
 
-interface UserData {
-  hex: string;
-  currentColor: string;
-  name: string;
-}
 
 const UserDataContext = createContext<{
   values: UserData;
-  update: (key: keyof UserData, value: string) => void;
+  update: UpdateType;
 } | undefined>(undefined);
 
 export const UserDataProvider: React.FC<React.PropsWithChildren> = ({ children }) => {

@@ -4,9 +4,9 @@ Recruitement project.
 Choose player name and color.
 You can move the character by pressing arrow on your keyboard.
 
-## Reccomendation
+## Recommendation
 
-I reccomend to use Chrome as a browser to use the app because the native color picker in that browser seems to be the best one - cleanest and simpliest to use
+I recommend to use Chrome as a browser to use the app because the native color picker in that browser seems to be the best one - cleanest and simpliest to use
 
 ## Available Scripts
 

@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { routeColorApiBase, routeJsonType } from '../../constants/routes';
 import { useDebounce } from '../../hooks/useDebounce';
-import { useUserData } from '../../hooks/useUserData';
 import styles from './style.module.css';
+import { UpdateType, UserData } from '../../types/commonTypes';
 
-const ColorPicker = () => {
+const ColorPicker: React.FC<{values: UserData, update: UpdateType}> = ({values, update}) => {
 
-    const { values, update } = useUserData();
     const [selectedColorHex, setSelectedColorHex] = useState(values.hex);
     const [selectedColor, setSelectedColor] = useState(values.currentColor);
     const [hasError, setHasError] = useState(false);

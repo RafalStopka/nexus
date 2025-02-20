@@ -1,12 +1,10 @@
-import { Grid } from './components/grid';
-import { UserData } from './containers/userData';
+import { MainContainer } from './containers/mainContainer';
 import { UserDataProvider } from './hooks/useUserData';
 
 function App() {
   return (
     <UserDataProvider>
-      <UserData />
-      <Grid />
+      <MainContainer />
     </UserDataProvider>
   );
 }

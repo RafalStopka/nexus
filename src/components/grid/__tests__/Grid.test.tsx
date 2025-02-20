@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import Grid from '../Grid';
 import { UserDataProvider } from '../../../hooks/useUserData';
-import { UserData } from '../../../containers/userData';
+import { MainContainer } from '../../../containers/mainContainer';
 
 test('Renders initial grid correctly', () => {
   render(<UserDataProvider><Grid /></UserDataProvider>);
@@ -14,8 +14,7 @@ test('Renders initial grid correctly', () => {
 test('Updates user name in the grid', () => {
   render(
   <UserDataProvider>
-    <UserData/>
-    <Grid />
+    <MainContainer/>
   </UserDataProvider>);
   const namePicker = screen.getByTestId('namePicker');
   const testName = screen.getByTestId('selectedGridItem');

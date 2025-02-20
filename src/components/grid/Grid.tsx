@@ -1,8 +1,8 @@
 import { KeyboardEvent, useEffect, useState } from 'react';
 import styles from './style.module.css';
-import { useUserData } from '../../hooks/useUserData';
+import { UserData } from '../../types/commonTypes';
 
-const Grid = () => {
+const Grid: React.FC<{values: UserData}> = ({values}) => {
     const rows = 10;
     const columns = 10;
 
@@ -10,7 +10,6 @@ const Grid = () => {
 
     const [currentRow, setCurrentRow] = useState(5);
     const [currentColumn, setCurrentColumn] = useState(5);
-    const { values } = useUserData();
 
     useEffect(() => {
         const calculateNewPosition = (arrowClickType: string) => {
