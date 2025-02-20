@@ -60,8 +60,12 @@ const ColorPicker = () => {
                 value={selectedColorHex}
                 onChange={handleColorChange}
                 className={styles.colorInput}
+                data-testid="colorPicker"
             />
-            <div className={styles.colorDisplay}>
+            <div 
+                className={styles.colorDisplay}
+                data-testid="colorDisplay"
+            >
                 Your chosen color: 
                 <span 
                     className={styles.colorName} 

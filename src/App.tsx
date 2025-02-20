@@ -1,4 +1,3 @@
-import './App.css';
 import { Grid } from './components/grid';
 import { UserData } from './containers/userData';
 import { UserDataProvider } from './hooks/useUserData';

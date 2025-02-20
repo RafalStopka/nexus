@@ -13,16 +13,17 @@ const Grid = () => {
     const { values } = useUserData();
 
     useEffect(() => {
-
         const calculateNewPosition = (arrowClickType: string) => {
+            const goToEdgePositionRow = rows - 1;
+            const goToEdgePositionColumn = columns - 1;
             setCurrentRow((prevRow) => {
                 let newRow = prevRow;
                 switch (arrowClickType) {
                     case 'ArrowDown':
-                        newRow = prevRow === 9 ? 0 : prevRow + 1;
+                        newRow = prevRow === goToEdgePositionRow ? 0 : prevRow + 1;
                         break;
                     case 'ArrowUp':
-                        newRow = prevRow === 0 ? 9 : prevRow - 1;
+                        newRow = prevRow === 0 ? goToEdgePositionRow : prevRow - 1;
                         break;
                 }
                 return newRow;
@@ -32,10 +33,10 @@ const Grid = () => {
                 let newColumn = prevColumn;
                 switch (arrowClickType) {
                     case 'ArrowLeft':
-                        newColumn = prevColumn === 0 ? 9 : prevColumn - 1;
+                        newColumn = prevColumn === 0 ? goToEdgePositionColumn : prevColumn - 1;
                         break;
                     case 'ArrowRight':
-                        newColumn = prevColumn === 9 ? 0 : prevColumn + 1;
+                        newColumn = prevColumn === goToEdgePositionColumn ? 0 : prevColumn + 1;
                         break;
                 }
                 return newColumn;
@@ -64,11 +65,13 @@ const Grid = () => {
                     key={`${row}-${col}`}
                     className={`${styles.gridItem} ${isSelected ? styles.selected : ''}`}
                     style={{ background: isSelected ? values.hex : '#fff' }}
+                    data-testid={`gridItem-${row}-${col}`}
                 >
                     {isSelected && (
                         <div 
                             className={styles.selectedGridItem}
                             style={{ color: values.hex }}
+                            data-testid='selectedGridItem'
                         >
                             {values.name}
                         </div>
@@ -85,6 +88,7 @@ const Grid = () => {
 
     return (
         <div className={styles.gridContainer}>
+            Press arrows to move around the playground
             {grid}
         </div>
     );

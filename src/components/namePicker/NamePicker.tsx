@@ -19,8 +19,12 @@ const NamePicker = () => {
                 value={name}
                 onChange={handleNameChange}
                 className={styles.input}
+                data-testid='namePicker'
             />
-            <div className={styles.nameDisplay}>
+            <div 
+                className={styles.nameDisplay}
+                data-testid='nameDisplay'
+            >
                 Your chosen name: 
                     <span 
                         className={styles.name}
