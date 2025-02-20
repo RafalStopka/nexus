@@ -1,7 +1,9 @@
-import { KeyboardEvent, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styles from './style.module.css';
 import { UserData } from '../../types/commonTypes';
 import { defaultGridItemBackground } from '../../constants/values';
+
+type ArrowClickType = 'ArrowDown' | 'ArrowUp' | 'ArrowLeft' | 'ArrowRight';
 
 const Grid: React.FC<{values: UserData}> = ({values}) => {
     const rows = 10;
@@ -11,8 +13,6 @@ const Grid: React.FC<{values: UserData}> = ({values}) => {
 
     const [currentRow, setCurrentRow] = useState(5);
     const [currentColumn, setCurrentColumn] = useState(5);
-
-    type ArrowClickType = 'ArrowDown' | 'ArrowUp' | 'ArrowLeft' | 'ArrowRight';
 
     const calculateNewPosition = useCallback((arrowClickType: ArrowClickType) => {
         const goToEdgePositionRow = rows - 1;
@@ -49,11 +49,9 @@ const Grid: React.FC<{values: UserData}> = ({values}) => {
     }, [calculateNewPosition]);
 
     useEffect(() => {
-        //@ts-ignore
         document.addEventListener('keydown', handleKeyboardClick);
 
         return () => {
-            //@ts-ignore
             document.removeEventListener('keydown', handleKeyboardClick);
         };
     }, [handleKeyboardClick]);
@@ -65,7 +63,7 @@ const Grid: React.FC<{values: UserData}> = ({values}) => {
             rowItems.push(
                 <div
                     key={`${row}-${col}`}
-                    className={`${styles.gridItem} ${isSelected ? styles.selected : ''}`}
+                    className={`${styles.gridItem} ${isSelected && styles.selected}`}
                     style={{ background: isSelected ? values.hex : defaultGridItemBackground }}
                     data-testid={`gridItem-${row}-${col}`}
                 >
