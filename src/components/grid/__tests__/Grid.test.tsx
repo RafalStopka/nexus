@@ -2,9 +2,10 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import Grid from '../Grid';
 import { UserDataProvider } from '../../../hooks/useUserData';
 import { MainContainer } from '../../../containers/mainContainer';
+import { mockValues } from '../../../constants/testUtils';
 
 test('Renders initial grid correctly', () => {
-  render(<UserDataProvider><Grid /></UserDataProvider>);
+  render(<UserDataProvider><Grid values={mockValues}/></UserDataProvider>);
   const gridElements = screen.getAllByTestId(/gridItem/);
   const initialName = screen.getByText(/NN/);
   expect(gridElements.length).toBe(100);
@@ -26,7 +27,7 @@ test('Updates user name in the grid', () => {
 });
 
 test('Updates user position', () => {
-  const { container } = render(<UserDataProvider><Grid /></UserDataProvider>);
+  const { container } = render(<UserDataProvider><Grid values={mockValues}/></UserDataProvider>);
   const selectedGridItem = screen.getByTestId('gridItem-5-5');
   expect(selectedGridItem).toBeInTheDocument();
   fireEvent.keyDown(container, {key: 'ArrowUp', code: 'ArrowUp'});

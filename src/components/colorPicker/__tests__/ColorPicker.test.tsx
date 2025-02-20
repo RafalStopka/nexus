@@ -1,9 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import ColorPicker from '../ColorPicker';
 import { UserDataProvider } from '../../../hooks/useUserData';
+import { mockValues, mockUpdate } from '../../../constants/testUtils';
 
 test('Renders color picker with default value', () => {
-  render(<UserDataProvider><ColorPicker /></UserDataProvider>);
+  render(<UserDataProvider><ColorPicker values={mockValues} update={mockUpdate}/></UserDataProvider>);
   const colorPicker = screen.getByTestId('colorPicker');
   const colorDisplay = screen.getByTestId('colorDisplay');
   expect(colorPicker).toHaveValue('#000000')
@@ -12,7 +13,7 @@ test('Renders color picker with default value', () => {
 });
 
 test('Changes input value', () => {
-  render(<UserDataProvider><ColorPicker /></UserDataProvider>);
+  render(<UserDataProvider><ColorPicker values={mockValues} update={mockUpdate}/></UserDataProvider>);
   const colorPicker = screen.getByTestId('colorPicker');
   fireEvent.input(colorPicker, { target: { value: "#123123" } });
   expect(colorPicker).toHaveValue('#123123');

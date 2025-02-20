@@ -3,6 +3,7 @@ import { routeColorApiBase, routeJsonType } from '../../constants/routes';
 import { useDebounce } from '../../hooks/useDebounce';
 import styles from './style.module.css';
 import { UpdateType, UserData } from '../../types/commonTypes';
+import { defaultColor, defaultHex } from '../../constants/values';
 
 const ColorPicker: React.FC<{values: UserData, update: UpdateType}> = ({values, update}) => {
 
@@ -11,9 +12,6 @@ const ColorPicker: React.FC<{values: UserData, update: UpdateType}> = ({values, 
     const [hasError, setHasError] = useState(false);
     const debouncedColor = useDebounce(selectedColorHex, 100);
     const isFirstRender = useRef(true);
-
-    const defaultHex = '#000000';
-    const defaultColor = 'Black';
     
     const handleError = () => {
         update('currentColor', defaultColor);
