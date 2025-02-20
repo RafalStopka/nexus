@@ -12,6 +12,17 @@ const ColorPicker: React.FC<{values: UserData, update: UpdateType}> = ({values, 
     const debouncedColor = useDebounce(selectedColorHex, 100);
     const isFirstRender = useRef(true);
 
+    const defaultHex = '#000000';
+    const defaultColor = 'Black';
+    
+    const handleError = () => {
+        update('currentColor', defaultColor);
+        setSelectedColor(defaultColor);
+        setSelectedColorHex(defaultHex);
+        update('hex', defaultHex);
+        setHasError(true);
+    }
+
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
@@ -28,11 +39,7 @@ const ColorPicker: React.FC<{values: UserData, update: UpdateType}> = ({values, 
                 setSelectedColor(data.name.value);
             } catch (e) {
                 console.error(e);
-                update('currentColor', 'Black');
-                setSelectedColor('Black');
-                setSelectedColorHex('#000000');
-                update('hex', '#000000');
-                setHasError(true);
+                handleError();
             }
         };
 
